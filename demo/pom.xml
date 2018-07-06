@@ -270,7 +270,12 @@
                         </archive>
                     </configuration>
                 </plugin>
-
+		<!-- The sonar plugin to perform code quality analysis -->
+                <plugin>
+                   <groupId>org.sonarsource.scanner.maven</groupId>
+                   <artifactId>sonar-maven-plugin</artifactId>
+                   <version>3.4.0.905</version>
+                </plugin>
                 <!-- The JBoss AS plugin deploys your war to a local JBoss AS container -->
                 <!-- To use run: mvn package jboss-as:deploy -->
                 <plugin>
