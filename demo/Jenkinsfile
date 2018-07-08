@@ -1,26 +1,25 @@
 pipeline {
     agent any
-def mvnTool = tool 'maven_3.0.5'
     stages {
         stage('Compile Stage') {
             steps {
                 echo 'Compiling....'
 				withMaven(maven : 'maven_3.0.5')
-				 sh "${mvnTool}/bin/mvn clean compile"
+				 sh "mvn clean compile"
             }
         }
         stage('Code Quality Analysis Stage') {
             steps {
                 echo 'Analysing Code quality....'
 				withMaven(maven : 'maven_3.0.5')
-				 sh "${mvnTool}/bin/mvn sonar:sonar"
+				 sh "mvn sonar:sonar"
             }
         }
         stage('WAR Generation Stage') {
             steps {
                 echo 'Generating WAR file....'
 				withMaven(maven : 'maven_3.0.5')
-				 sh "${mvnTool}/bin/mvn spackage"
+				 sh "mvn spackage"
             }
         }
     }
