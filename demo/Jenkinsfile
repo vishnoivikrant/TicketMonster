@@ -5,7 +5,7 @@ pipeline {
 		steps {
 			withMaven(maven: "maven_3.0.5"){
 			         sh "cd /var/lib/jenkins/workspace/pipeline-test/demo"
-				 sh "mvn clean compile"
+				 sh "mvn clean compile --file /var/lib/jenkins/workspace/pipeline-test/demo/pom.xml"
 			}
             }
         }
