@@ -4,7 +4,6 @@ pipeline {
         stage('Compile Stage') {
 		steps {
 			withMaven(maven: "maven_3.0.5"){
-			         sh "cd /var/lib/jenkins/workspace/pipeline-test/demo"
 				 sh "mvn clean compile --file /var/lib/jenkins/workspace/pipeline-test/demo/pom.xml"
 			}
             }
@@ -12,16 +11,14 @@ pipeline {
         stage('Code Quality Analysis Stage') {
 		steps {
 			withMaven(maven: "maven_3.0.5"){
-			         
-				 sh "mvn sonar:sonar"
+				 sh "mvn sonar:sonar --file /var/lib/jenkins/workspace/pipeline-test/demo/pom.xml"
 			}
             }
         }
         stage('WAR Generation Stage') {
             steps {
 		    withMaven(maven: "maven_3.0.5"){
-			
-		        sh "mvn package"
+		        sh "mvn package --file /var/lib/jenkins/workspace/pipeline-test/demo/pom.xml"
 		    }
             }
         }
