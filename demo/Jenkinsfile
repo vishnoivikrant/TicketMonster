@@ -3,23 +3,26 @@ pipeline {
     stages {
         stage('Compile Stage') {
 		steps {
-				withMaven(maven: "maven_3.0.5")
+			withMaven(maven: "maven_3.0.5"){
 			         sh "cd /var/lib/jenkins/workspace/AnsibleDeploymentTest/demo"
 				 sh "mvn clean compile"
+			}
             }
         }
         stage('Code Quality Analysis Stage') {
 		steps {
-				withMaven(maven: "maven_3.0.5")
+			withMaven(maven: "maven_3.0.5"){
 			         sh "cd /var/lib/jenkins/workspace/AnsibleDeploymentTest/demo"
 				 sh "mvn sonar:sonar"
+			}
             }
         }
         stage('WAR Generation Stage') {
             steps {
-				withMaven(maven: "maven_3.0.5")
+		    withMaven(maven: "maven_3.0.5"){
 			sh "cd /var/lib/jenkins/workspace/AnsibleDeploymentTest/demo"	 
 		        sh "mvn package"
+		    }
             }
         }
     }
