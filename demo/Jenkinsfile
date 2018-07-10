@@ -4,22 +4,22 @@ pipeline {
         stage('Compile Stage') {
 		steps {
 				withMaven(maven: "maven_3.0.5",
-					 mavenSettingsConfig: '/demo/settings.xml')
-				 sh "mvn clean compile"
+					 )
+				 sh "mvn clean compile -s /var/lib/jenkins/workspace/AnsibleDeploymentTest/demo/settings.xml"
             }
         }
         stage('Code Quality Analysis Stage') {
 		steps {
 				withMaven(maven: "maven_3.0.5",
-					 mavenSettingsConfig: '/demo/settings.xml')
-				 sh "mvn sonar:sonar"
+					 )
+				 sh "mvn sonar:sonar -s /var/lib/jenkins/workspace/AnsibleDeploymentTest/demo/settings.xml"
             }
         }
         stage('WAR Generation Stage') {
             steps {
 				withMaven(maven: "maven_3.0.5",
-					 mavenSettingsConfig: '/demo/settings.xml')
-				 sh "mvn spackage"
+					 )
+				 sh "mvn spackage -s /var/lib/jenkins/workspace/AnsibleDeploymentTest/demo/settings.xml"
             }
         }
     }
